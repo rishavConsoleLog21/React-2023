@@ -1,12 +1,11 @@
-import React from "react";
-
+import './ExpenseItem.css'
 const ExpenseItem = () => {
   return (
-    <div>
-      <div>Date</div>
-      <div>
-        <h2>Title</h2>
-        <div>Amount</div>
+    <div className="expense-item">
+      <div>Sep 30th 2023</div>
+      <div className="expense-item__description">
+        <h2>BreakFast</h2>
+        <div className="expense-item__price">$0.5</div>
       </div>
     </div>
   );
