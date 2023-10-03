@@ -20,4 +20,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-S7_styling_react/public/favicon.ico
+
+/acorn.cmd
+S7_styling_react/node_modules
