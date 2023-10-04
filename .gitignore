@@ -23,3 +23,4 @@ yarn-error.log*
 
 /acorn.cmd
 S7_styling_react/node_modules
+S8_project/node_modules
