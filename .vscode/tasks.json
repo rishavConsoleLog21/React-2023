@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"path": "S3_React_Basics/react-basics",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build - S3_React_Basics/S8_project",
+			"detail": "react-scripts build"
+		}
+	]
+}
