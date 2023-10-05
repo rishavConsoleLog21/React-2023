@@ -4,8 +4,21 @@
 
 html {
   font-family: sans-serif;
+  background: #a588b7;
+  background: linear-gradient(to right, #a588b7, #ffa8b6);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
 }
 
 body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
 }
