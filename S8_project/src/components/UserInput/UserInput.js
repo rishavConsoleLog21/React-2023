@@ -13,7 +13,6 @@ const UserInput = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("Submit");
     props.onCalculate(userInput);
   };
 
@@ -25,7 +24,7 @@ const UserInput = (props) => {
     setUserInput((prevInput) => {
       return {
         ...prevInput,
-        [input]: value,
+        [input]: +value,
       }
     })
   };
@@ -34,7 +33,7 @@ const UserInput = (props) => {
     <form onSubmit={submitHandler} className="form">
       <div className="input-group">
         <p>
-          <label htmlFor="current-savings">Current Savings ($)</label>
+          <label htmlFor="current-savings">Current Savings (₹)</label>
           <input
             onChange={(event) =>
               inputChangeHandler("current-savings", event.target.value)
@@ -45,7 +44,7 @@ const UserInput = (props) => {
           />
         </p>
         <p>
-          <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
+          <label htmlFor="yearly-contribution">Yearly Savings (₹)</label>
           <input
             onChange={(event) =>
               inputChangeHandler("yearly-contribution", event.target.value)
