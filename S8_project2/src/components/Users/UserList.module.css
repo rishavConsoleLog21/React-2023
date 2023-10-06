@@ -2,15 +2,26 @@
     margin: 2rem auto;
     width: 90%;
     max-width: 40rem;
+    text-align: center;
+    color: lightcoral;
   }
   
   .users ul {
     list-style: none;
     padding: 1rem;
+    margin: 0;
+
+
   }
   
   .users li {
     border: 1px solid #ccc;
     margin: 0.5rem 0;
     padding: 0.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: black;
+    display: block;
+
+
   }
