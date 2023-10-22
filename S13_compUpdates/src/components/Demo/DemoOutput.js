@@ -6,4 +6,4 @@ const DemoOutput = (props) => {
     return <MyPara>{props.show ? 'This is new' : ''}</MyPara>;
 };
 
-export default DemoOutput;
+export default React.memo(DemoOutput);

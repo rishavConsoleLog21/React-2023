@@ -13,10 +13,8 @@ function App() {
   return (
     <div className="app">
       <h1>Hi there!</h1>
-      <DemoOutput show={showPara} />
-      <Button onClick={() => toggleParaHandler(!showPara)}>
-        Toggle Paragraph!
-      </Button>
+      <DemoOutput show={false} />
+      <Button onClick={toggleParaHandler}>Toggle Paragraph!</Button>
     </div>
   );
 }
