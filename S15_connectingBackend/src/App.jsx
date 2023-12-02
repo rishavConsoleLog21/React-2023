@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 import Places from "./components/Places.jsx";
 import Modal from "./components/Modal.jsx";
@@ -12,9 +12,30 @@ function App() {
   const selectedPlace = useRef();
 
   const [userPlaces, setUserPlaces] = useState([]);
+  const [fetchingData, setFetchingData] = useState(false);
+  const [error, setError] = useState();
   const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    async function fetchUserPlaces() {
+      setFetchingData(true);
+
+      try {
+        const places = await fetchUserPlaces();
+        setUserPlaces(places);
+      } catch (error) {
+        setError({
+          title: "Error!",
+          message:
+            error.message || "Failed to fetch places. Please try again later.",
+        });
+      }
+      setFetchingData(false);
+    }
+    fetchUserPlaces();
+  }, []);
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
@@ -24,7 +45,7 @@ function App() {
   function handleStopRemovePlace() {
     setModalIsOpen(false);
   }
-  
+
   async function handleSelectPlace(selectedPlace) {
     //await updateUserPlaces([selectedPlace, ...userPlaces]);
     //to use above code we should add loading component
@@ -37,7 +58,7 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
-    
+
     try {
       await updateUserPlaces([selectedPlace, ...userPlaces]);
     } catch (error) {
@@ -99,12 +120,23 @@ function App() {
         </p>
       </header>
       <main>
-        <Places
-          title="I'd like to visit ..."
-          fallbackText="Select the places you would like to visit below."
-          places={userPlaces}
-          onSelectPlace={handleStartRemovePlace}
-        />
+        {error && (
+          <Error
+            title={error.title}
+            message={error.message}
+            onConfirm={() => setError(null)}
+          />
+        )}
+        {!error && (
+          <Places
+            title="I'd like to visit ..."
+            fallbackText="Select the places you would like to visit below."
+            isLoading={fetchingData}
+            loadingText="Fetching place data...please wait!"
+            places={userPlaces}
+            onSelectPlace={handleStartRemovePlace}
+          />
+        )}
 
         <AvailablePlaces onSelectPlace={handleSelectPlace} />
       </main>
