@@ -5,7 +5,7 @@ import Modal from "./components/Modal.jsx";
 import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import AvailablePlaces from "./components/AvailablePlaces.jsx";
-import { updateUserPlaces } from "./http.js";
+import {fetchUserPlaces, updateUserPlaces } from "./http.js";
 import Error from "./components/Error.jsx";
 
 function App() {
@@ -19,9 +19,8 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    async function fetchUserPlaces() {
+    async function fetchPlaces() {
       setFetchingData(true);
-
       try {
         const places = await fetchUserPlaces();
         setUserPlaces(places);
@@ -34,7 +33,7 @@ function App() {
       }
       setFetchingData(false);
     }
-    fetchUserPlaces();
+    fetchPlaces();
   }, []);
 
   function handleStartRemovePlace(place) {
