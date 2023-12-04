@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import { isEmail, isNotEmpty, hasMinLength } from "../util/validation";
 
 export default function Login() {
   // const [enteredEmail, setEnteredEmail] = useState("");
@@ -15,11 +16,10 @@ export default function Login() {
   });
 
   //code for validating email
-  const emailIsValid = didEdit.email && !enteredInput.email.includes("@");
+  const emailIsValid = didEdit.email && !isEmail(enteredInput.email) && !isNotEmpty(enteredInput.email);
 
   //code for validating password with at least 8 characters long, no spaces, at least one uppercase letter, one lowercase letter, one number and one special character
-  const passwordIsValid = didEdit.password && enteredInput.password.trim().length < 6;
-
+  const passwordIsValid = didEdit.password && !hasMinLength(enteredInput.password, 6) && !isNotEmpty(enteredInput.password);
   function handleSubmit(e) {
     e.preventDefault();
     console.log(enteredInput);
