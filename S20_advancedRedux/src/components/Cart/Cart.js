@@ -22,6 +22,13 @@ const Cart = (props) => {
           />
         ))}
       </ul>
+      <div className={classes.total}>
+        <span>Total Amount </span>
+        <span>
+          $
+          {cartItems.reduce((acc, item) => acc + item.totalPrice, 0).toFixed(2)}
+        </span>
+      </div>
     </Card>
   );
 };
