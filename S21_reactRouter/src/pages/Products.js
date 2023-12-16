@@ -1,13 +1,22 @@
-//Add code for Product page here
+import { Link } from "react-router-dom";
+
+const ProductList = [
+  { id: 1, name: "Apple" },
+  { id: 2, name: "Banana" },
+  { id: 3, name: "Cranberry" },
+];
+
 function ProductPages() {
   return (
     <div>
       <h1>Product</h1>
       <p>Product page content</p>
       <ul>
-        <li>Product 1</li>
-        <li>Product 2</li>
-        <li>Product 3</li>
+        {ProductList.map((product) => (
+          <li key={product.id}>
+            <Link to={`/products/${product.id}`}>{product.name}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
