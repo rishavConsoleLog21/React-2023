@@ -1,10 +1,22 @@
-import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
 import HomePage from "./pages/Home";
 import ProductPages from "./pages/Products";
+import RootLayout from "./pages/Root";
 
 const router = createBrowserRouter([
-  { path: "/", element: <HomePage /> },
-  { path: "/products", element: <ProductPages /> },
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/products", element: <ProductPages /> },
+    ],
+  },
 ]);
 
 // Alternative way to create routes
