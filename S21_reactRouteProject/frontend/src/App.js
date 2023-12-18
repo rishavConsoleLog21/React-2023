@@ -27,7 +27,7 @@ import EventsPage, { loader as eventLoader } from "./pages/EventsPage";
 import EventDetailPage, {
   loader as eventDetailsLoader,
 } from "./pages/EventDetailPage";
-import NewEventPage from "./pages/NewEventPage";
+import NewEventPage, {action as newEventAction } from "./pages/NewEventPage";
 import EditEvent from "./pages/EditEvent";
 import EventRootLayout from "./pages/EventRoot";
 
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
               { path: "edit", element: <EditEvent /> },
             ],
           },
-          { path: "new", element: <NewEventPage /> },
+          { path: "new", element: <NewEventPage />, action: newEventAction },
         ],
       },
     ],
