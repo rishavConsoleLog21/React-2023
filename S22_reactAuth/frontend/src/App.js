@@ -6,7 +6,7 @@ import EventDetailPage, {
   loader as eventDetailLoader,
   action as deleteEventAction,
 } from "./pages/EventDetail";
-import EventsPage, { loader as eventsLoader } from "./pages/Events";
+//import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import EventsRootLayout from "./pages/EventsRoot";
 import HomePage from "./pages/Home";
 import NewEventPage from "./pages/NewEvent";
@@ -18,6 +18,9 @@ import AuthenticationPage, {
 } from "./pages/Authentication";
 import { action as logoutAction } from "./pages/Logout";
 import { tokenLoader, checkToken } from "./util/auth";
+import { Suspense, lazy } from "react";
+
+const EventsPage = lazy(() => import('./pages/Events'))
 
 const router = createBrowserRouter([
   {
@@ -34,8 +37,8 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <EventsPage />,
-            loader: eventsLoader,
+            element: <Suspense fallback={<p>Loading...Please Wait!!!</p>}><EventsPage /></Suspense>,
+            loader: (meta) => import('./pages/Events').then(module => module.loader(meta)),
           },
           {
             path: ":eventId",
