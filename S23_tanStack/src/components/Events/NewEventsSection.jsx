@@ -1,18 +1,16 @@
-import { useQuery} from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 
-import LoadingIndicator from '../UI/LoadingIndicator.jsx';
-import ErrorBlock from '../UI/ErrorBlock.jsx';
-import EventItem from './EventItem.jsx';
-import { fetchEvents } from '../../util/http.js'
-
+import LoadingIndicator from "../UI/LoadingIndicator.jsx";
+import ErrorBlock from "../UI/ErrorBlock.jsx";
+import EventItem from "./EventItem.jsx";
+import { fetchEvents } from "../../util/http.js";
 
 export default function NewEventsSection() {
-  const {data, isPending, isError, error} = useQuery({
-    queryKey: ['events'],
-    queryFn: fetchEvents,
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["events", { max: 3 }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
     staleTime: 5000, // Its a good idea to set a staleTime to avoid unnecessary refetching
     //gcTime: 30000, // Garbage collection time // Its a good idea to set a gcTime to avoid unnecessary refetching
-    
   });
 
   let content;
@@ -23,7 +21,10 @@ export default function NewEventsSection() {
 
   if (isError) {
     content = (
-      <ErrorBlock title="An error occurred" message={error.info?.message || 'Faild to fetch events'}/>
+      <ErrorBlock
+        title="An error occurred"
+        message={error.info?.message || "Faild to fetch events"}
+      />
     );
   }
 
