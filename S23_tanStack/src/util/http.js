@@ -1,3 +1,8 @@
+import { QueryClient } from'@tanstack/react-query';
+
+export const queryClient = new QueryClient();
+
+
 export async function fetchEvents({ signal, searchTerm }) {
   let url = "http://localhost:3000/events";
 
@@ -21,7 +26,7 @@ export async function fetchEvents({ signal, searchTerm }) {
 
 export async function createNewEvent(eventData) {
   const response = await fetch(`http://localhost:3000/events`, {
-    method: "{POST",
+    method: "POST",
     body: JSON.stringify(eventData),
     headers: {
       "Content-Type": "application/json",
