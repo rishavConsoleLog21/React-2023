@@ -27,11 +27,26 @@ function HomePage(props) {
   );
 }
 
+// getServersideProps is a function that will run on the server
+// export async function getServersideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+//   // fetch data from an API
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// }
+
+// getStaticProps is a function that will run on the client
 export async function getStaticProps() {
   return {
     props: {
       meetups: DUMMY_MEETUPS,
     },
+    // if revalidate is set to true, then the page will be regenerated on the client after every 10 seconds
+    revalidate: 10,
   };
 }
 
