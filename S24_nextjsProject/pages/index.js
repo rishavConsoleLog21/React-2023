@@ -28,7 +28,7 @@ function HomePage(props) {
 }
 
 // getServersideProps is a function that will run on the server
-// export async function getServersideProps(context) {
+// export async function getServerSideProps(context) {
 //   const req = context.req;
 //   const res = context.res;
 //   // fetch data from an API
