@@ -1,9 +1,17 @@
 import { MongoClient } from "mongodb";
 import MeetupItem from "../components/meetups/MeetupList";
+import Head from "next/head";
 
 function HomePage(props) {
   return (
     <>
+      <Head>
+        <title>Meetups Events</title>
+        <meta
+          name="description"
+          content="Browse a huge list of highly active tech meetups"
+        />
+      </Head>
       <MeetupItem meetups={props.meetups} />
     </>
   );

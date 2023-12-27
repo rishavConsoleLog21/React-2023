@@ -1,11 +1,16 @@
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 import { MongoClient, ObjectId } from "mongodb";
+import Head from "next/head";
 
 const MeetupDetailPage = (props) => {
   const router = useRouter();
   return (
     <Fragment>
+      <Head>
+        <title>{props.meetupData.title}</title>
+        <meta name="description" content={props.meetupData.description} />
+      </Head>
       <h1>{props.meetupData.title}</h1>
       <img src={props.meetupData.image} alt={props.meetupData.title} />
       <address>{props.meetupData.address}</address>
