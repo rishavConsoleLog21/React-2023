@@ -1,8 +1,8 @@
-import { useContext, useRef, useState } from 'react';
-
-import { ChallengesContext } from '../store/challenges-context.jsx';
-import Modal from './Modal.jsx';
-import images from '../assets/images.js';
+import { useContext, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ChallengesContext } from "../store/challenges-context.jsx";
+import Modal from "./Modal.jsx";
+import images from "../assets/images.js";
 
 export default function NewChallenge({ onDone }) {
   const title = useRef();
@@ -57,22 +57,55 @@ export default function NewChallenge({ onDone }) {
         </p>
 
         <ul id="new-challenge-images">
-          {images.map((image) => (
-            <li
-              key={image.alt}
-              onClick={() => handleSelectImage(image)}
-              className={selectedImage === image ? 'selected' : undefined}
-            >
-              <img {...image} />
-            </li>
-          ))}
+          {images.map((image) => {
+            const sign = Math.random() > 0.5 ? 1 : -1;
+            return (
+              <motion.li
+                initial={{
+                  opacity: 0,
+                  x: sign * (90 * Math.random() + 30),
+                  y: 90 * Math.random() + 30,
+                }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                exit={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring" }}
+                key={image.alt}
+                onClick={() => handleSelectImage(image)}
+                className={selectedImage === image ? "selected" : undefined}
+              >
+                <img {...image} />
+              </motion.li>
+            );
+          })}
         </ul>
 
         <p className="new-challenge-actions">
-          <button type="button" onClick={onDone}>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 20,
+              mass: 0.5,
+            }}
+            type="button"
+            onClick={onDone}
+          >
             Cancel
-          </button>
-          <button>Add Challenge</button>
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 20,
+              mass: 0.5,
+            }}
+          >
+            Add Challenge
+          </motion.button>
         </p>
       </form>
     </Modal>

@@ -6,15 +6,22 @@ export default function Modal({ title, children, onClose }) {
     <>
       <div className="backdrop" onClick={onClose} />
       <motion.dialog
-        
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20, duration: 0.5}}
-        exit={{ opacity: 0, y: 30 }}
+        //variants is used to reuse animation states
+
+        variants={{
+          hidden: { y: 30, opacity: 0 },
+          visible: { y: 0, opacity: 1 },
+          exit: { y: 30, opacity: 0 },
+        }}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        transition={{ duration: 0.2 }}
         open
         className="modal"
       >
         <h2>{title}</h2>
+
         {children}
       </motion.dialog>
     </>,
